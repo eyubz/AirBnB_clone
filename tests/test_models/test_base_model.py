@@ -78,9 +78,7 @@ class TestBaseModel(unittest.TestCase):
         attribute of the class """
         base_model1 = BaseModel()
 
-        #prev_date = base_model1.updated_at
         base_model1.save()
-        #self.assertNotEqual(base_model1.updated_at, prev_date)
         self.assertAlmostEqual(base_model1.updated_at, datetime.now(),
                                delta=timedelta(seconds=1))
 
@@ -108,6 +106,18 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base_model_json["updated_at"], str)
         self.assertEqual(base_model_json["__class__"],
                          base_model1.__class__.__name__)
+
+    """ Test object recreation"""
+    def test_object_recreation(self):
+        """ Test if object is correctly recreated from the
+        the existing dictionary representation of an object"""
+        base_model1 = BaseModel()
+        model_dict = base_model1.to_dict()
+        new_object = BaseModel(**model_dict)
+        for key, value in model_dict.items():
+            self.assertEqual(getattr(base_model1, key),
+                             getattr(new_object, key))
+        self.assertNotEqual(base_model1, new_object)
 
 
 if __name__ == "__main__":
