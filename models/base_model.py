@@ -11,22 +11,29 @@ class BaseModel():
     functions """
 
     """ Constructor"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ Initialize the class
 
         Args:
-            arg1: Description of arg1.
-            arg2: Description of arg2.
+            arg1: list of variable number of arguments
+            arg2: key-value pairs of the arguments
 
         Returns:
             Description of what the function returns.
         Raises:
             ValueError: If some condition is not met.
         """
-
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key == "created_at" or key == "updated_at":
+                        setattr(self, key, datetime.fromisoformat(value))
+                    else:
+                        setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     """ String representation of a class"""
     def __str__(self):
@@ -79,7 +86,7 @@ class BaseModel():
         Raises:
             ValueError: If some condition is not met.
         """
-        new_dict = self.__dict__
+        new_dict = self.__dict__.copy()
         for key in new_dict:
             if key == "created_at" or key == "updated_at":
                 new_dict[key] = new_dict[key].isoformat()
