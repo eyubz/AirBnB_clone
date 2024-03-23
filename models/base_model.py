@@ -51,7 +51,7 @@ class BaseModel:
         and updated_at to their representation in iso format.
         And add __class__ key with value class name to the
         dictionary representation """
-        new_dict = self.__dict__
+        new_dict = self.__dict__.copy()
         for key in new_dict:
             if key == "created_at" or key == "updated_at":
                 new_dict[key] = new_dict[key].isoformat()
