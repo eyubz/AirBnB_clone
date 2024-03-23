@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ A file storage module """
 import json
-import os
+from models.base_model import BaseModel
 
 
-class FileStorage():
+class FileStorage:
     """ A file storage class """
     __file_path = "file.json"
     __objects = {}
@@ -25,19 +25,27 @@ class FileStorage():
         Args:
             arg1: an object
         """
-        key = f"{obj.__class__.name}.{obj.id}"
-        FileStorage.__objects[key] = obj.__dict__
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        FileStorage.__objects[key] = obj
 
-    """ Write to a file """   
+    """ Write to a file """
     def save(self):
         """ Write the dictionary __objects to a file """
+        o = FileStorage.__objects
+        obj_dict = {key: obj.to_dict() for key, obj in o.items()}
         with open(FileStorage.__file_path, "w") as file:
-            json.dump(FileStorage.__objects, file)
-    
+            json.dump(obj_dict, file)
+
     """ Read the data from a file. """
     def reload(self):
         """ Reload the data in the file and store it to __objcts
         dictionary """
-        if os.path.exists(FileStorage.__file_path):
+        try:
             with open(FileStorage.__file_path, "r") as file:
-                FileStorage.__objects = json.load(file)
+                obj_dict = json.load(file)
+                for values in obj_dict.values():
+                    class_name = values["__class__"]
+                    del values["__class__"]
+                    self.new(eval(class_name)(**values))
+        except FileNotFoundError:
+            return
