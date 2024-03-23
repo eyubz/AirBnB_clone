@@ -10,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
 
     """ Handle end of file """
     def do_EOF(self, arg):
-        """ EOF command to exit the interpretor\n"""
+        """ Exit on ctrl+D \n"""
         return True
 
     """ Handle quitting the interpretor """
