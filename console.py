@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import cmd
 """ A module contain the command interpretor for BaseModel class """
+import cmd
 
 
 class HBNBCommand(cmd.Cmd):
