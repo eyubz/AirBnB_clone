@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """A module containing base_model class """
 from datetime import datetime
-from uuid import uuid4
 import models
+from uuid import uuid4
 
 
-class BaseModel():
+class BaseModel:
     """ A class base model which is the base class
     for all other classes by defining basic attributes and
     functions """
