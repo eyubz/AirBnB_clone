@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """A module containing base_model class """
 from datetime import datetime
-import uuid
-from model import storage
+from uuid import uuid4
+import models
 
 
 class BaseModel():
@@ -27,10 +27,10 @@ class BaseModel():
                     else:
                         setattr(self, key, value)
         else:
-            self.id = str(uuid.uuid4())
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            models.storage.new(self)
 
     """ String representation of a class"""
     def __str__(self):
@@ -42,7 +42,7 @@ class BaseModel():
     def save(self):
         """ Update the updated_at attribute to the current time """
         self.updated_at = datetime.now()
-        storage.save(self)
+        models.storage.save()
 
     """ Dictionary representation of a class"""
     def to_dict(self):
