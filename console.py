@@ -10,12 +10,13 @@ class HBNBCommand(cmd.Cmd):
 
     """ Handle end of file """
     def do_EOF(self, arg):
-        """ Exit on ctrl+D \n"""
+        """ Exit on ctrl+D """
+        print("")
         return True
 
     """ Handle quitting the interpretor """
     def do_quit(self, arg):
-        """ Quit command to quit the interpretor \n"""
+        """ Quit command to quit the interpretor """
         return True
 
     """ Handle empty line + ENTER """
