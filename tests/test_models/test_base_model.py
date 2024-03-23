@@ -1,9 +1,8 @@
 #!/usr/bin/python3
+""" Tests for base model class """
 from datetime import datetime, timedelta
 import unittest
 from models.base_model import BaseModel
-""" This module contain list of tests for
-BaseModel class """
 
 
 class TestBaseModel(unittest.TestCase):
