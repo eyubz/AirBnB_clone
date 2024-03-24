@@ -37,7 +37,7 @@ class FileStorage:
     def save(self):
         """ Write the dictionary __objects to a file """
         o = FileStorage.__objects
-        obj_dict = {obj: obj_dict[obj].to_dict() for obj in o.keys()}
+        obj_dict = {obj: o[obj].to_dict() for obj in o.keys()}
         with open(FileStorage.__file_path, "w") as file:
             json.dump(obj_dict, file)
 
