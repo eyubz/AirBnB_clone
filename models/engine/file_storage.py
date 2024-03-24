@@ -4,8 +4,13 @@ import json
 from models.base_model import BaseModel
 from models.user import User
 
+
 class FileStorage:
-    """ A file storage class """
+    """ A file storage class
+    Attributes:
+        __file_path (str): The name of the file to save objects to.
+        __objects (dict): A dictionary of instantiated objects.
+    """
     __file_path = "file.json"
     __objects = {}
 
@@ -41,7 +46,7 @@ class FileStorage:
         """ Reload the data in the file and store it to __objcts
         dictionary """
         try:
-            with open(FileStorage.__file_path, "r") as file:
+            with open(FileStorage.__file_path) as file:
                 obj_dict = json.load(file)
                 for values in obj_dict.values():
                     class_name = values["__class__"]
