@@ -10,3 +10,7 @@ class State(BaseModel):
         name (str): name of the state
     """
     name = ""
+    """ Constructor """
+    def __init__(self):
+        """ Call superclass constructor """
+        super().__init__()x
