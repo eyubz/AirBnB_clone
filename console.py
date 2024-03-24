@@ -2,6 +2,7 @@
 """ A module contain the command interpretor for BaseModel class """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
@@ -9,7 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """ Command processor for Base Model class """
 
     prompt = "(hbnb) "
-    __classes = {"BaseModel"}
+    __classes = {"BaseModel", "User"}
 
     """ Handle end of file """
     def do_EOF(self, arg):
