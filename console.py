@@ -56,10 +56,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             objects = models.storage.all()
             for obj in objects.values():
-                o = obj.to_dict()
-                if (o["__class__"] == args[0].strip()
-                        and o["id"] == args[1].strip()):
-                    print(eval(args[0].strip())())
+                if (obj.__class__.__name__ == args[0].strip()
+                        and obj.id == args[1].strip()):
+                    print(obj.__str__())
                     break
             else:
                 print("** no instance found **")
@@ -77,10 +76,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             objects = models.storage.all()
             for key, obj in objects.items():
-                o = obj.to_dict()
-                if (o["__class__"] == args[0].strip()
-                        and o["id"] == args[1].strip()):
+                if (obj.__class__.__name__ == args[0].strip()
+                        and obj.id == args[1].strip()):
                     del objects[key]
+                    models.storage.save()
                     break
             else:
                 print("** no instance found **")
@@ -100,6 +99,39 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) == 0:
                     ans.append(o.__str__())
             print(ans)
+
+    """ Update an instance """
+    def do_update(self, arg):
+        """ Update an instance by class name and id """
+        args = arg.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
+        else:
+            objects = models.storage.all()
+            for key, obj in objects.items():
+                if (obj.__class__.__name__ == args[0].strip() and
+                        obj.id == args[1].strip()):
+                    if args[2] not in obj.__dict__:
+                        setattr(obj, args[2], args[3].strip('"'))
+                    else:
+                        t = type(getattr(obj, args[2]))
+                        if t == "int":
+                            setattr(obj, args[2], int(args[3]))
+                        elif t == "float":
+                            setattr(obj, args[2], float(args[3]))
+                        elif t == "str":
+                            setattr(obj, args[2], args[3].strip('"'))
+                    break
+            else:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
