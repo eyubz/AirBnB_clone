@@ -25,9 +25,9 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.fromisoformat(value))
+                    self.__dict__[key] = datetime.fromisoformat(value)
                 else:
-                    setattr(self, key, value)
+                    self.__dict[key] = value
         else:
             models.storage.new(self)
 
