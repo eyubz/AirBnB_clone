@@ -3,6 +3,11 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 import models
 
 
@@ -10,7 +15,8 @@ class HBNBCommand(cmd.Cmd):
     """ Command processor for Base Model class """
 
     prompt = "(hbnb) "
-    __classes = {"BaseModel", "User"}
+    __classes = {"BaseModel", "User", "State", "City",
+                 "Amenity", "Place", "Review"}
 
     """ Handle end of file """
     def do_EOF(self, arg):
