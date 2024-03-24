@@ -22,12 +22,12 @@ class BaseModel:
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if len(kwargs) != 0:
+        if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    self.__dict__[key] = datetime.fromisoformat(value)
+                    setattr(self, key, datetime.fromisoformat(value))
                 else:
-                    self.__dict__[key] = value
+                    setattr(self, key, value)
         else:
             models.storage.new(self)
 
