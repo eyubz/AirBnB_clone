@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A module containing base_model class """
+""" A module containing base_model class """
 from datetime import datetime
 import models
 from uuid import uuid4
@@ -19,16 +19,16 @@ class BaseModel:
             arg2: key-value pairs of the arguments
 
         """
-        if kwargs:
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.fromisoformat(value))
+                    self.__dict__[key] = datetime.fromisoformat(value))
                 else:
-                    setattr(self, key, value)
+                    self.__dict__[key] = value
         else:
-            self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
             models.storage.new(self)
 
     """ String representation of a class"""
