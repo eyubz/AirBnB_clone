@@ -16,3 +16,8 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
+
+    """ Constructor """
+    def __init__(self):
+        """ Call superclass constructor """
+        super().__init__()
