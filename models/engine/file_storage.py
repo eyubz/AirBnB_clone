@@ -2,7 +2,7 @@
 """ A file storage module """
 import json
 from models.base_model import BaseModel
-
+form models.user import User
 
 class FileStorage:
     """ A file storage class """
