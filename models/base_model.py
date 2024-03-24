@@ -20,9 +20,6 @@ class BaseModel:
 
         """
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
-        self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -30,6 +27,9 @@ class BaseModel:
                 else:
                     self.__dict__[key] = value
         else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
 
     """ String representation of a class"""
@@ -52,8 +52,7 @@ class BaseModel:
         And add __class__ key with value class name to the
         dictionary representation """
         new_dict = self.__dict__.copy()
-        for key in new_dict:
-            if key == "created_at" or key == "updated_at":
-                new_dict[key] = self.__dict__[key].isoformat()
         new_dict["__class__"] = self.__class__.__name__
+        new_dict["created_at"] = new_dict["created_at"].isoformat()
+        new_dict["updated_at"] = new_dict["updated_at"].isoformat()
         return new_dict
