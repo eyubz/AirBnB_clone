@@ -24,7 +24,7 @@ class BaseModel:
                 if key == "created_at" or key == "updated_at":
                     self.__dict__[key] = datetime.fromisoformat(value)
                 else:
-                    self.__dict[key] = value
+                    self.__dict__[key] = value
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
