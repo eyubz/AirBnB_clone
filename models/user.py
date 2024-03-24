@@ -9,8 +9,3 @@ class User(BaseModel):
     password = ""
     first_name = ""
     last_name = ""
-
-    """ Constructor function """
-    def __init__(self):
-        """ Calling super classes constructor """
-        super().__init__()
