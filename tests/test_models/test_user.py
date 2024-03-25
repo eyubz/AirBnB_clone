@@ -32,13 +32,11 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(user1, "first_name"))
         self.assertTrue(hasattr(user1, "last_name"))
 
-    """ Test attribut id"""
-    def test_id(self):
+    """ Test attribut email"""
+    def test_email(self):
         """ Test whether two objets have different id.
         Tese whether id is an instance of string """
 
         user1 = User()
-        user2 = User()
-
-        self.assertIsInstance(user1.id, str)
-        self.assertNotEqual(user1.id, user2.id)
+        self.assertTrue(user1.email == "")
+        self.assertIsInstance(user1.email, str)
