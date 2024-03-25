@@ -36,10 +36,12 @@ class FileStorage:
     """ Write to a file """
     def save(self):
         """ Write the dictionary __objects to a file """
+        new_dict = {}
         o = FileStorage.__objects
-        obj_dict = {obj: o[obj].to_dict() for obj in o.keys()}
+        for k, v in o.items():
+            new_dict[k] = v.to_dict()
         with open(FileStorage.__file_path, "w") as file:
-            json.dump(obj_dict, file)
+            json.dump(new_dict, file)
 
     """ Read the data from a file. """
     def reload(self):
@@ -48,10 +50,8 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path) as file:
                 obj_dict = json.load(file)
-                FileStorage.__objects = {}
                 for key, values in obj_dict.items():
                     class_name = values["__class__"]
-                    del values["__class__"]
                     new_obj = self.new(eval(class_name)(**values))
                     FileStorage.__objects[key] = new_obj
         except FileNotFoundError:
