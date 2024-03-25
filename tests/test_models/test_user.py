@@ -32,11 +32,38 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(user1, "first_name"))
         self.assertTrue(hasattr(user1, "last_name"))
 
-    """ Test attribut email"""
+    """ Test attribute email"""
     def test_email(self):
-        """ Test whether two objets have different id.
-        Tese whether id is an instance of string """
+        """ Test whether email is an empty string by default
+        ans also it is an instance of str """
 
         user1 = User()
         self.assertTrue(user1.email == "")
         self.assertIsInstance(user1.email, str)
+
+    """ Test attribute password"""
+    def test_password(self):
+        """ Test whether password is an empty string by default
+        and also an instance of str"""
+
+        user1 = User()
+        self.assertTrue(user1.password == "")
+        self.assertIsInstance(user1.password, str)
+
+    """ Test attribute frist_name"""
+    def test_first_name(self):
+        """ Test whether first_name is an empty string by default
+        and also an instance of str"""
+
+        user1 = User()
+        self.assertTrue(user1.first_name == "")
+        self.assertIsInstance(user1.first_name, str)
+
+    """ Test attribute last_name"""
+    def test_last_name(self):
+        """ Test whether last_name is an empty string by default
+        and also an instance of str"""
+
+        user1 = User()
+        self.assertTrue(user1.last_name == "")
+        self.assertIsInstance(user1.last_name, str)
