@@ -1,0 +1,26 @@
+.places{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.place-header{
+    width: 100%;
+    font-size: 30px;
+}
+article{
+    width: 390px;
+    border: 1px solid  #FF5A5F;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 4px;
+    display: flex;
+}
+.place-title
+{
+    font-size: 30px;
+    margin: 0 auto;
+}
+.suite{
+    margin: 0 auto;
+}
