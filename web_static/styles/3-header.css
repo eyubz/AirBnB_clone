@@ -11,7 +11,7 @@ header{
     margin-left: 20px;
     width: 100px;
     height: 40px;
-    background-image: url("./images/logo.png");
+    background-image: url("../images/logo.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
