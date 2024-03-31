@@ -59,19 +59,19 @@ article{
     margin-top: 10px;
 }
 .max_guest{
-    background-image: url("./images/icon_group.png");
+    background-image: url("../images/icon_group.png");
     background-repeat: no-repeat;
     width: 100px;
     height: 50px;
 }
 .number_rooms{
-    background-image: url("./images/icon_bed.png");
+    background-image: url("../images/icon_bed.png");
     background-repeat: no-repeat;
     width: 100px;
     height: 50px;
 }
 .number_bathrooms{
-    background-image: url("./images/icon_bath.png");
+    background-image: url("../images/icon_bath.png");
     background-repeat: no-repeat;
     width: 100px;
     height: 50px;
@@ -92,21 +92,21 @@ article{
     margin: 5px;
 }
 .tv{
-    background-image: url("./images/icon_tv.png");
+    background-image: url("../images/icon_tv.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 30px;
     height: 30px;
 }
 .wifi{
-    background-image: url("./images/icon_wifi.png");
+    background-image: url("../images/icon_wifi.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 30px;
     height: 30px;
 }
 .pet{
-    background-image: url("./images/icon_pets.png");
+    background-image: url("../images/icon_pets.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 30px;
